@@ -1,0 +1,116 @@
+* {
+  background: #3E4D4F;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+button {
+  background-color: transparent #1f1f1f;
+  border: 1px solid #1f1f1f;
+  border-radius: 3px;
+  text-align: center;
+  margin: 10px;
+  color: #fff;
+  padding: 10px;
+  width: 95%;
+  box-shadow: 0 0 10px rgba(1, 239, 205, 1)
+}
+
+.head2 {
+  background-color: transparent #1f1f1f;
+  border: 2px solid #0fa;
+  box-shadow: 0 0 20px rgba(1, 239, 205, 1);
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.head2 h3 {
+   text-align: center;
+   color: #fff;
+}
+
+h2 {
+  color: #fff;
+  text-align: center;
+  margin: 30px
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8em 1em;
+  background-color: #1f1f1f;
+  border: 1px solid #0fa;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 1em;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+p {
+  text-align: center;
+  color: #fff;
+  margin: 2px;
+}
+
+   .flash-sale {
+     text-align: center;
+     padding: 20px;
+     color: white;
+   }
+
+   .countdown {
+     font-size: 1.5rem;
+     margin: 10px 0;
+     font-weight: bold;
+   }
+   
+         button {
+            padding: 12px 24px;
+            font-size: 16px; /* Ukuran font menengah */
+            color: #fff;
+            background-color: transparent; /* Warna biru */
+            border: 1px solid #0fa;
+            border-radius: 5px; /* Membuat sudut membulat */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1ED3B8; /* Warna saat di-hover */
+        }
+        
+            .settings {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .settings input, .settings button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      color: #fff;
+      text-align: CENTER;
+      border: 1px solid #0fa;
+    }
+
+    .settings button {
+      background-color: transparent;
+      margin: 10px;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .settings button:hover {
+  background-color: transparent #1f1f1f;
+  border: 1px solid #1f1f1f;
+  border-radius: 3px;
+  text-align: center;
+  margin: 10px;
+  color: #fff;
+  padding: 10px;
+  width: 95%;
+  box-shadow: 0 0 10px rgba(1, 239, 205, 1)
+    }#00FF0F

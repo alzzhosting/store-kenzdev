@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Keranjang Belanja</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    .cart-container h1 {
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    .cart-item {
+      margin: 20px 0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-item h3 {
+      font-size: 20px;
+      color: #00ffcc;
+    }
+
+    .cart-item p {
+      font-size: 18px;
+    }
+
+    .cart-item button {
+      background: #ff6666;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .cart-item button:hover {
+      background: #ff3333;
+    }
+
+    .total-price {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ffcc;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .checkout-button:hover {
+      background: #00cc99;
+    }
+
+    .empty-cart {
+      font-size: 18px;
+      color: #ff6666;
+    }
+
+    /* Styling for Sawer button */
+    .sawer-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff9900;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sawer-button:hover {
+      background: #e68a00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <h1>Keranjang Belanja</h1>
+
+    <!-- Keranjang Items -->
+    <div id="cart-items"></div>
+
+    <p id="empty-cart-message" class="empty-cart" style="display: none;">Keranjang Anda kosong</p>
+
+    <!-- Total Harga -->
+    <div class="total-price">
+      Total: <span id="total-price">Rp 0</span>
+    </div>
+
+    <!-- Tombol Checkout -->
+    <button class="checkout-button" onclick="checkout()">Lanjutkan ke Pembayaran</button>
+
+    <!-- Tombol Sawer Sociabuz -->
+    <button class="sawer-button" onclick="donate()">Sawer di Sociabuz</button>
+  </div>
+
+  <script>
+    // Ambil data keranjang dari LocalStorage
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemsContainer = document.getElementById("cart-items");
+      const emptyCartMessage = document.getElementById("empty-cart-message");
+      const totalPriceElement = document.getElementById("total-price");
+
+      // Jika keranjang kosong
+      if (cart.length === 0) {
+        emptyCartMessage.style.display = "block";
+        cartItemsContainer.innerHTML = '';
+        totalPriceElement.textContent = 'Rp 0';
+      } else {
+        emptyCartMessage.style.display = "none";
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        // Menampilkan produk di keranjang
+        cart.forEach((item, index) => {
+          const cartItem = document.createElement("div");
+          cartItem.classList.add("cart-item");
+
+          cartItem.innerHTML = `
+            <h3>${item.productName}</h3>
+            <p>Harga: Rp ${item.price}</p>
+            <button onclick="removeFromCart(${index})">Hapus</button>
+          `;
+
+          cartItemsContainer.appendChild(cartItem);
+
+          total += item.price;
+        });
+
+        // Update total harga
+        totalPriceElement.textContent = `Rp ${total}`;
+      }
+    }
+
+    // Fungsi untuk menghapus item dari keranjang
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1); // Hapus produk dari keranjang
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart(); // Muat ulang keranjang setelah dihapus
+    }
+
+    // Memuat keranjang ketika halaman dimuat
+    window.onload = loadCart;
+
+    // Fungsi untuk melanjutkan ke halaman pembayaran WhatsApp
+    function checkout() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let orderDetails = "Produk yang ingin dibeli:\n";
+      let totalPrice = 0;
+
+      // Mengumpulkan detail produk dari keranjang
+      cart.forEach(item => {
+        orderDetails += `${item.productName} - Rp ${item.price}\n`;
+        totalPrice += item.price;
+      });
+
+      // Membuat pesan untuk WhatsApp
+      const message = encodeURIComponent(orderDetails + `\nTotal Harga: Rp ${totalPrice}`);
+
+      // Mengarahkan ke WhatsApp dengan pesan terisi
+      window.location.href = `https://wa.me/6288215523477?text=${message}`;
+    }
+
+    // Fungsi untuk mengarahkan ke halaman Sociabuz untuk donasi
+    function donate() {
+      // Gantilah dengan URL donasi Sociabuz Anda
+      window.location.href = "https://sociabuz.com/kenzdev/give"; // URL donasi Sociabuz
+    }
+  </script>
+
+</body>
+</html>

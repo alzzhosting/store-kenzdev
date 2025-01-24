@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Store KENZ</title>
+  
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Particles.js (Optional for more complex particles) -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1, h3 {
+      text-align: center;
+      margin: 20px 0;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Efek Partikel */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Produk Styles */
+    footer {
+      text-align: center;
+      padding: 10px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    
+    .selamat {
+      text-align: center;
+      font-size: 18px;
+      margin: 30px;
+    }
+    
+    .product {
+      margin: 20px auto;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+
+    .product h3 {
+      font-size: 24px;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.9), 0 0 25px rgba(0, 255, 255, 0.7);
+    }
+
+    .product p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .product-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .product button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px 20px;
+      border: none;
+      background: linear-gradient(90deg, #0ff, #00f);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .product button:hover {
+      background: linear-gradient(90deg, #00f, #0ff);
+      transform: scale(1.05);
+    }
+
+    /* Keranjang Logo */
+    .cart-logo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 30px;
+      background-color: #00ffcc;
+      color: #000;
+      padding: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      transition: transform 0.3s;
+    }
+
+    .cart-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      max-width: 400px;
+      width: 80%;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      padding: 10px 20px;
+      background: #00ffcc;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background: #00cc99;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Particles Effect -->
+  <div id="particles-js"></div>
+
+  <h1>WEB STORE KENZ</h1>
+  <div class="selamat">
+  <p>Selamat Datang Di Website Store KenzDev Pilih Kebutuhan Anda Disini</p>
+  </div>
+  
+  <h1>SCRIPT WEBSITE</h1>
+  <div class="product">
+    <h3>SCRIPT DEVELOPER</h3>
+    <p>Harga: Rp 10.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('SCRIPT WEBSITE DEVELOPER', 10000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('PANEL RAM 1GB CPU 30%', 'SCRIPT DEVELOPER YANG MODELNYA ELEGAN DAN WADADIDAW DENGAN HARGA PAS DIKANTONG. DENGAN HARGA 10.000 ANDA BISA MENDAPATKAN WEBSITE DEVELOPER.')">Read More</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <h3>SCRIPT PORTOFOLIO</h3>
+    <p>Harga: Rp 10.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('SCRIPT PORTOFOLIO', 10000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('PANEL RAM 2GB CPU 60%', 'SCRIPT PORTOFOLIO YANG MODELNYA FUTURISTIK DAN ELEGAN DENGAN HARGA PAS DIKANTONG. DENGAN HARGA 10.000 ANDA BISA MENDAPATKAN WEBSITE PORTOFOLIO FUTURISTIK.')">Read More</button>
+    </div>
+  </div>
+  
+  <div class="product">
+    <h3>SCRIPT STORE V2</h3>
+    <p>Harga: Rp 20.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('SCRIPT STORE V2', 20000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('SCRIPT STORE V2', 'SCRIPT STORE V2 YANG MODEL TAMPILAN ELEGAN DENGAN HARGA PAS DIKANTONG. DENGAN HARGA 20.000 ANDA BISA MENDAPATKAN WEBSITE STORE V2.')">Read More</button>
+    </div>
+  </div>  
+
+  <div class="product">
+    <h3>SCRIPT STORE V3</h3>
+    <p>Harga: Rp 20.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('SCRIPT STORE V3', 20000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('SCRIPT STORE V3 HARGA 20.000', 'COCOK UNTUK WEBSITE BELANJA DENGAN HARGA PAS DIKANTONG ANDA BISA PUNYA WEBSITE STORE.')">Read More</button>
+    </div>
+  </div>
+  
+  <div class="product">
+    <h3>SCRIPT PAYMENT QRIS</h3>
+    <p>Harga: Rp 25.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('SCRIPT PAYMENT QRIS', 25000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('SCRIPT PAYMENT QRIS HARGA 25.000', 'COCOK UNTUK WEBSITE BELANJA DENGAN HARGA PAS DIKANTONG ANDA BISA PUNYA WEBSITE PAYMENT QRIS.')">Read More</button>
+    </div>
+  </div>
+
+  <h1>JASA BIKIN WEB</h1>
+  <div class="product">
+    <h3>JASA BIKIN WEB STORE</h3>
+    <p>Harga: Rp 20.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('JASA BIKIN WEB STORE', 20000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('JASA BIKIN WEB STORE HARGA 20.000', 'COCOK UNTUK WEBSITE BELANJA DENGAN HARGA PAS DIKANTONG ANDA BISA PUNYA WEBSITE STORE.')">Read More</button>
+    </div>
+  </div>
+  
+  <div class="product">
+    <h3>JASA BIKIN WEB PORTOFOLIO</h3>
+    <p>Harga: Rp 10.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('JASA BIKIN WEB PORTOFOLIO', 10000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('JASA BIKIN WEB PORTOFOLIO HARGA 10.000', 'COCOK UNTUK WEBSITE TENTANG KAMU DENGAN HARGA PAS DIKANTONG ANDA BISA PUNYA WEBSITE PORTOFOLIO.')">Read More</button>
+    </div>
+  </div>
+  
+    <div class="product">
+    <h3>JASA BIKIN WEB PAYMENT QRIS</h3>
+    <p>Harga: Rp 20.000</p>
+    <div class="product-buttons">
+      <button onclick="addToCart('JASA BIKIN WEB PAYMENT QRIS', 20000)">Tambah ke Keranjang</button>
+      <button onclick="showReadMoreModal('JASA BIKIN WEB PAYMENT QRIS HARGA 20.000', 'COCOK UNTUK WEBSITE PAYMENT DENGAN HARGA PAS DIKANTONG ANDA BISA PUNYA WEBSITE PAYMENT QRIS.')">Read More</button>
+    </div>
+  </div>
+  
+  <!-- Logo Keranjang -->
+  <a href="keranjang.html">
+    <div class="cart-logo">
+      <i class="fas fa-card"></i>
+    </div>
+  </a>
+
+  <!-- Modal Read More -->
+  <div id="read-more-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="read-more-title"></h3>
+      <p id="read-more-description"></p>
+      <button onclick="closeModal('read-more-modal')">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    // Particles.js initialization
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 100,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#00FFFF"
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#fff"
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 4,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: 3,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: false
+          }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Modal Read More
+    function showReadMoreModal(title, description) {
+      const modal = document.getElementById("read-more-modal");
+      document.getElementById("read-more-title").innerText = title;
+      document.getElementById("read-more-description").innerText = description;
+      modal.style.display = "flex";
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+    }
+
+    // Add to Cart (LocalStorage)
+    function addToCart(productName, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ productName, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  </script>
+  
+  <footer>
+    &copy KenzDeveloper 2025
+  </footer>
+</body>
+</html>
